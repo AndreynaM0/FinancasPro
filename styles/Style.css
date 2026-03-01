@@ -112,6 +112,7 @@ main .BlocoFormulario{
     display: flex;
     justify-content: center;
 }
+
 main .BlocoFormulario form {
     width: 40vw;
     display: flex !important;
@@ -161,4 +162,50 @@ main .BlocoFormulario .blocoInputs input:focus, main .BlocoFormulario .blocoInpu
 .AcoesFormulario .BotaoSalvar{
     color: #fff;
     background-color:#1EB980;
+}
+
+.ContainerDashboard{
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+}
+
+.ContainerDashboard .InfoValores{
+    display: flex;
+    gap: 40px;
+    background-color: #fff;
+    border: 1px solid #E3E3E3;
+    border-radius: 0.5rem;
+    padding: 20px 50px;
+    align-items: center;
+
+}
+
+.ContainerDashboard .InfoValores h3{
+    font-weight: 300;
+
+}
+
+.ContainerDashboard .InfoValores h1{
+    color: #1EB980;
+}
+
+.ContainerDashboard .InfoValores i{
+   color: #1EB980;
+   font-size: 25px;
+   padding: 10px;
+   padding-bottom: 7px;
+   border-radius: 0.8rem;
+   border: 1px solid #f5f5f5;
+   background-color: #8bbba93f;
+   
+}
+
+.despesa h1{
+    color: rgb(210, 71, 71) !important;
+}
+
+.despesa i{
+    color: rgb(210, 71, 71) !important;
+    background-color: rgba(210, 89, 89, 0.304) !important;;
 }

@@ -9,6 +9,10 @@ body{
     background-color: #f5f5f5;
 }
 
+input:focus, select:focus {
+    outline: none;
+}
+
 header.menu{
     background-color: #19181F;
     display: flex;
@@ -96,4 +100,65 @@ header.menu nav{
 
 .ItemTransacao .description b{
     font-size: 18px;
+}
+
+main .NovoBlocoDeTitulo{
+    display: flex;
+    padding: 30px 20%;
+    flex-direction: row;
+}
+
+main .BlocoFormulario{
+    display: flex;
+    justify-content: center;
+}
+main .BlocoFormulario form {
+    width: 40vw;
+    display: flex !important;
+    flex-direction: row !important; 
+}
+
+main .BlocoFormulario form .blocoInputs{
+    width: 100%;
+}
+
+main .BlocoFormulario .blocoInputs div{
+    width: 100%;   
+    padding: 10px 0%;
+}
+
+main .BlocoFormulario .blocoInputs input, main .BlocoFormulario .blocoInputs select{
+    width: 100%;
+    padding: 10px 5px;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    border: 1px solid #E3E3E3;
+}
+
+main .BlocoFormulario .blocoInputs input:focus, main .BlocoFormulario .blocoInputs select:focus{
+    border: 1px solid #1EB980 !important;
+}
+
+.blocoInputs .AcoesFormulario{
+    display: flex;
+    gap: 30px;
+}
+
+.AcoesFormulario .BotaoCancelar, .AcoesFormulario .BotaoSalvar{
+    width: 50%;
+    border-radius: 0.5rem;
+    padding: 10px 5px;
+    box-shadow: 1px 2px 2px #0000005f;
+    border: 1px solid #1EB980;
+}
+
+.AcoesFormulario .BotaoCancelar{
+    color: #1EB980;
+    background-color: #fff;
+    
+}
+
+.AcoesFormulario .BotaoSalvar{
+    color: #fff;
+    background-color:#1EB980;
 }

@@ -9,11 +9,15 @@ botao.addEventListener("click", function(evento){
     const valorCategoria = document.querySelector('#TipoCategoria').value;
     const valorData = document.querySelector('#Data').value;
 
-    const entrada = localStorage.setItem("Entrada", valorEntrada);
-    const descricao = localStorage.setItem("Descricao", valorDescricao);
-    const valor = localStorage.setItem("Valor", pegarValor);
-    const categoria = localStorage.setItem("Categoria", valorCategoria);
-    const data = localStorage.setItem("Data", valorData);
+    const transacao = {
+        Entrada: valorEntrada,
+        Descricao: valorDescricao,
+        Valor: pegarValor,
+        Categoria: valorCategoria,
+        Data: valorData
+    }
+
+    localStorage.setItem("transacao", JSON.stringify(transacao))
     
 
 })

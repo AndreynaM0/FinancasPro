@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="../styles/Style.css">
+</head>
+<body>
+    <header class="menu">
+        <img src="../img/Logo.png" alt="">
+        <nav>
+            <a href="../index.html">Dashboard</a>
+            <a href="ListaDeTransacao.html">Transações</a>
+            <a href="" class="itemAtivo">Categoria</a>
+            <a href="">Relatório</a>
+            <a href="">Orçamento</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="NovoBlocoDeTitulo">
+            <div>
+                <h1>Nova Categoria</h1>
+            </div>
+        </div>
+        <div class="BlocoFormulario">
+            <form action="">
+                <div class="blocoInputs">
+                    <div>
+                        <select name="TipoEntrada" id="TipoEntrada">
+                            <option value="R">Receita</option>
+                            <option value="D">Despesa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" name="Categoria" id="Categoria" placeholder="Categoria">
+                    </div>
+                    <div class="AcoesFormulario">
+                        <button class="BotaoCancelar">Cancelar</button>
+                        <button class="BotaoSalvar">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

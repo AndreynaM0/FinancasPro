@@ -209,3 +209,7 @@ main .BlocoFormulario .blocoInputs input:focus, main .BlocoFormulario .blocoInpu
     color: rgb(210, 71, 71) !important;
     background-color: rgba(210, 89, 89, 0.304) !important;;
 }
+
+main .GraficoContainerD{
+    
+}

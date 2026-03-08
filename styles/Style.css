@@ -76,6 +76,14 @@ header.menu nav{
     background-color: #ffff;
 }
 
+.ItemTransacaoReceita{
+    border-bottom: 2px solid #1eb98090 !important;
+}
+
+.ItemTransacaoDespesa{
+    border-bottom: 2px solid rgba(210, 71, 71, 0.634) !important;
+}
+
 .ListagemTransacoes .AcoesItemTransacao{
     width: 20%;
     display: flex;
@@ -100,6 +108,8 @@ header.menu nav{
 .ItemTransacao .description b{
     font-size: 18px;
 }
+
+
 
 main .NovoBlocoDeTitulo{
     gap: 650px;

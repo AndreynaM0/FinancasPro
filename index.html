@@ -18,7 +18,7 @@
         <nav>
             <a href="" class="itemAtivo">Dashboard</a>
             <a href="pages/ListaDeTransacao.html" >Transações</a>
-            <a href=>Categoria</a>
+            <a href="pages/Categorias.html">Categoria</a>
             <a href="">Relatório</a>
             <a href="">Orçamento</a>
         </nav>
@@ -34,7 +34,7 @@
             <div class="InfoValores">
                 <div>
                     <h3>Saldo do mês</h3>
-                    <h1>R$ 0,00</h1>
+                    <h1 id="valorSaldo">R$ 0,00</h1>
                 </div>
                 <div>
                     <i class="fi fi-sr-wallet"></i>
@@ -43,7 +43,7 @@
            <div class="InfoValores">
                 <div>
                     <h3>Receitas</h3>
-                    <h1>R$ 0,00</h1>
+                    <h1 id="valorReceita">R$ 0,00</h1>
                 </div>
                 <div>
                     <i class="fi fi-ss-wallet-income"></i>
@@ -52,7 +52,7 @@
             <div class="InfoValores despesa">
                 <div>
                     <h3>Despesas</h3>
-                    <h1>R$ 0,00</h1>
+                    <h1 id="valorDespesa">R$ 0,00</h1>
                 </div>
                 <div>
                     <i class="fi fi-sr-wallet-arrow"></i>
@@ -68,6 +68,7 @@
 
         </div>
     </main>
+    <script src="./script.js"></script>
 </body>
 
 </html>

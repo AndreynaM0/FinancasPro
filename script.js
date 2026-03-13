@@ -44,6 +44,20 @@ function excluirTransacao(posicao) {
 
 }
 
+function editarTransacao(posicao) {
+    let trasacoes = new Array();
+
+    if (localStorage.hasOwnProperty("transacoes")) {
+        transacoes = JSON.parse(localStorage.getItem("transacoes"));
+    }
+
+    if (transacoes.length){
+        window.location.href = "NovaTransacao.html";
+        transacoes.splice(posicao, 1)
+        localStorage.setItem("transacoes", JSON.stringify(transacoes));
+    }
+}
+
 const listagemDeTransacoes = document.getElementById("listagemTransacao");
 
 if (listagemDeTransacoes) {
@@ -61,7 +75,7 @@ if (listagemDeTransacoes) {
                     <div> ${itemTransacao.Categoria} . ${itemTransacao.Data} </div> 
                 </div> 
                 <div class="AcoesItemTransacao">
-                    <button><i class="fi fi-rr-pencil"></i></button>
+                    <button onclick="editarTransacao(${posicao})"><i class="fi fi-rr-pencil"></i></button>
                     <button onclick="excluirTransacao(${posicao})" ><i class="fi fi-rs-trash"></i></button>
                 </div>
             </div>

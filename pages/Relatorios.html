@@ -19,8 +19,8 @@
         <nav>
             <a href="../index.html">Dashboard</a>
             <a href="Transacoes.html">Transações</a>
-            <a href="Categorias.html" class="itemAtivo">Categoria</a>
-            <a href="Relatorios.html">Relatório</a>
+            <a href="Categorias.html">Categoria</a>
+            <a href="Relatorios.html" class="itemAtivo">Relatório</a>
             <a href="Orcamentos.html">Orçamento</a>
         </nav>
     </header>
@@ -28,19 +28,27 @@
     <main>
         <div class="NovoBlocoDeTitulo">
             <div>
-                <h1>Categorias</h1>
+                <h1>Relatorio</h1>
             </div>
-            <div class="NovaCategoria">
-                <a href="NovaCategoria.html">Nova</a>
+            <div class="selecaoMeses">
+                <select name="selecaoMeses" id="selecaoMeses">
+                    <option value="3" selected>3 meses</option>
+                    <option value="6">6 meses</option>
+                    <option value="9">9 meses</option>
+                    <option value="12">12 meses</option>
+                </select>
             </div>
         </div>
-
+        <div class="Relatorio">
+            <h3>Receitas x Despesas por Mês</h3>
+        </div>
+    </br>
         <div class="containerCategorias">
             <div class="Receitas">
-                <h3>Receitas</h3>
+                <h3>Mês Atual x Anterior</h3>
             </div>
             <div class="Despesas">
-                <h3>Despesas</h3>
+                <h3>Maiores Despesas do mês</h3>
             </div>
         </div>
     </main>

@@ -22,7 +22,7 @@ if (botao) {
         localStorage.setItem("transacoes", JSON.stringify(transacoes));
 
         //Retornar a listagem de transações:
-        window.location.href = "ListaDeTransacao.html";
+        window.location.href = "Transacoes.html";
 
     })
 }

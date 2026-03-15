@@ -29,24 +29,25 @@
             </div>
         </div>
         <div class="BlocoFormulario">
-            <form action="">
+            <form id="formCategoria">
                 <div class="blocoInputs">
                     <div>
                         <select name="TipoEntrada" id="TipoEntrada">
-                            <option value="R">Receita</option>
-                            <option value="D">Despesa</option>
+                            <option value="Receita">Receita</option>
+                            <option value="Despesa">Despesa</option>
                         </select>
                     </div>
                     <div>
                         <input type="text" name="Categoria" id="Categoria" placeholder="Categoria">
                     </div>
                     <div class="AcoesFormulario">
-                        <button class="BotaoCancelar">Cancelar</button>
-                        <button class="BotaoSalvar">Salvar</button>
+                        <button class="BotaoCancelar" id="botaoCancelarCategoria">Cancelar</button>
+                        <button class="BotaoSalvar" id="botaoSalvarCategoria">Salvar</button>
                     </div>
                 </div>
             </form>
         </div>
     </main>
+    <script src="../script.js"></script>
 </body>
 </html>

@@ -93,28 +93,91 @@ const valorReceita = document.getElementById("valorReceita");
 const valorDespesa = document.getElementById("valorDespesa");
 const valorSaldo = document.getElementById("valorSaldo");
 
-let transacoes = new Array();
+if(valorReceita && valorDespesa && valorSaldo){
 
-if (localStorage.hasOwnProperty("transacoes")) {
-    transacoes = JSON.parse(localStorage.getItem("transacoes"));
+    let transacoes = new Array();
+    
+    if (localStorage.hasOwnProperty("transacoes")) {
+        transacoes = JSON.parse(localStorage.getItem("transacoes"));
+    }
+    
+    let somaR = 0;
+    let somaD = 0;
+    let somaT = 0;
+    
+    let somaRD = transacoes.map((itemTransacao) => {
+        if (itemTransacao.Entrada == "Receita"){
+            let converterValorReceita = parseFloat(itemTransacao.Valor);
+            somaR += converterValorReceita;
+        }else if (itemTransacao.Entrada == "Despesa"){
+            let converterValorDespesa = parseFloat(itemTransacao.Valor);
+            somaD += converterValorDespesa;
+        }
+    
+        somaT = parseFloat(somaR - somaD).toFixed(2);
+    })
+        
+    valorReceita.innerHTML = `R$${somaR}`;
+    valorDespesa.innerHTML = `R$${somaD}`;
+    valorSaldo.innerHTML = `R$${somaT}`;
 }
 
-let somaR = 0;
-let somaD = 0;
-let somaT = 0;
 
-let somaRD = transacoes.map((itemTransacao) => {
-    if (itemTransacao.Entrada == "Receita"){
-        let converterValorReceita = parseFloat(itemTransacao.Valor);
-        somaR += converterValorReceita;
-    }else if (itemTransacao.Entrada == "Despesa"){
-        let converterValorDespesa = parseFloat(itemTransacao.Valor);
-        somaD += converterValorDespesa;
+const botaoSalvarCategoria = document.getElementById("botaoSalvarCategoria");
+
+if(botaoSalvarCategoria){
+    botaoSalvarCategoria.addEventListener("click", (evento)=>{
+        evento.preventDefault()
+        const tipoDeEntrada = document.getElementById("TipoEntrada").value;
+        const descricaoCategoria = document.getElementById("Categoria").value;
+
+        let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
+
+        categorias.push({
+            tipoDeEntrada, descricaoCategoria
+        });
+
+        localStorage.setItem("categorias", JSON.stringify(categorias));
+        window.location.href = "Categorias.html";
+
+    })   
+}
+
+const listagemReceitaCategorias = document.getElementById("listagemDeReceitasCategoria");
+const listagemDespesaCategorias = document.getElementById("listagemDeDespesasCategoria");
+
+if(listagemReceitaCategorias && listagemDespesaCategorias){
+    let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
+    if(categorias.length){
+        let receitas = categorias.filter((item)=> item.tipoDeEntrada == 'Receita').map( (item) => {
+            return `
+            <li>
+                <div class="descricaoItemCategoria">
+                    ${item.descricaoCategoria}
+                </div>
+                <div class="botaoDeAcoesItemCategoria">
+                    <button ><i class="fi fi-rr-pencil"></i></button>
+                <button ><i class="fi fi-rs-trash"></i></button>
+                </div>
+            </li>
+            `
+        }).join('\n')
+
+        let despesas = categorias.filter((item)=> item.tipoDeEntrada == 'Despesa').map( (item) => {
+            return `
+            <li>
+                <div class="descricaoItemCategoria">
+                    ${item.descricaoCategoria}
+                </div>
+                <div class="botaoDeAcoesItemCategoria">
+                    <button ><i class="fi fi-rr-pencil"></i></button>
+                <button ><i class="fi fi-rs-trash"></i></button>
+                </div>
+            </li>
+            `
+        }).join('\n')
+
+        listagemReceitaCategorias.innerHTML = receitas;
+        listagemDespesaCategorias.innerHTML = despesas;
     }
-
-    somaT = parseFloat(somaR - somaD).toFixed(2);
-})
-    
-valorReceita.innerHTML = `R$${somaR}`;
-valorDespesa.innerHTML = `R$${somaD}`;
-valorSaldo.innerHTML = `R$${somaT}`;
+}

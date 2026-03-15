@@ -233,17 +233,64 @@ main .BlocoFormulario .blocoInputs input:focus, main .BlocoFormulario .blocoInpu
     background-color: #fff;
     border: 1px solid #E3E3E3;
     border-radius: 0.5rem;
-    padding: 20px 150px;
     align-items: center;
+    padding: 20px 0;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
 }
 
 .containerCategorias .Despesas {
     background-color: #fff;
     border: 1px solid #E3E3E3;
     border-radius: 0.5rem;
-    padding: 20px 150px;
+    padding: 20px 0;
+    width: 30%;
+    display: flex;  
+    flex-direction: column;
     align-items: center;
 }
+
+.containerCategorias .containerListagemCategorias{
+    width: 80% !important;
+    margin-top: 20px;
+}
+
+.containerCategorias .containerListagemCategorias ul {
+    list-style-type: none;
+}
+
+.containerListagemCategorias li{
+    display:flex;
+    padding: 10px 0;
+}
+
+.containerListagemCategorias li .descricaoItemCategoria{
+    width: 60%;
+
+}
+
+.containerListagemCategorias li .botaoDeAcoesItemCategoria{
+    display: flex;
+    width: 40%;
+    gap: 10px;
+    justify-content: end;
+}
+
+.containerListagemCategorias li .botaoDeAcoesItemCategoria button{
+    background-color: #fff;
+    border: none;
+    color: #5B746A;
+}
+
+.containerCategorias .Despesas h3{
+     color: rgb(210, 71, 71) !important
+}
+
+.containerCategorias .Receitas h3{
+    color: #1EB980;
+}
+
 
 .NovaCategoria a{
     display: flex;

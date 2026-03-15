@@ -126,52 +126,73 @@ if(valorReceita && valorDespesa && valorSaldo){
 const botaoSalvarCategoria = document.getElementById("botaoSalvarCategoria");
 
 if(botaoSalvarCategoria){
-    botaoSalvarCategoria.addEventListener("click", (evento)=>{
-        evento.preventDefault()
-        const tipoDeEntrada = document.getElementById("TipoEntrada").value;
-        const descricaoCategoria = document.getElementById("Categoria").value;
+    const queryParamEditarCategoria= window.location.href.split("?")?.pop();
+    if(!queryParamEditarCategoria.startsWith("posicao")){
+        botaoSalvarCategoria.addEventListener("click", (evento)=>{
+            evento.preventDefault()
+            const tipoDeEntrada = document.getElementById("TipoEntrada").value;
+            const descricaoCategoria = document.getElementById("Categoria").value;
+    
+            let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
+    
+            categorias.push({
+                tipoDeEntrada, descricaoCategoria
+            });
+    
+            localStorage.setItem("categorias", JSON.stringify(categorias));
+            window.location.href = "Categorias.html";
+        })   
 
-        let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
-
-        categorias.push({
-            tipoDeEntrada, descricaoCategoria
-        });
-
-        localStorage.setItem("categorias", JSON.stringify(categorias));
-        window.location.href = "Categorias.html";
-
-    })   
+    }
 }
 
 const listagemReceitaCategorias = document.getElementById("listagemDeReceitasCategoria");
 const listagemDespesaCategorias = document.getElementById("listagemDeDespesasCategoria");
 
+function excluirCategoria(posicao) {
+    let categorias = new Array();
+
+    if (localStorage.hasOwnProperty("categorias")) {
+        categorias = JSON.parse(localStorage.getItem("categorias"));
+    }
+
+    if (categorias.length) {
+        categorias.splice(posicao, 1);
+        localStorage.setItem("categorias", JSON.stringify(categorias));
+        window.location.reload();
+    }
+}
+
+function editarCategoria(posicao){
+    window.location.href = `NovaCategoria.html?posicao=${posicao}`
+}
+
 if(listagemReceitaCategorias && listagemDespesaCategorias){
     let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
     if(categorias.length){
-        let receitas = categorias.filter((item)=> item.tipoDeEntrada == 'Receita').map( (item) => {
+        let receitas = categorias.filter((item)=> item.tipoDeEntrada == 'Receita').map( (item, posicao) => {
             return `
             <li>
                 <div class="descricaoItemCategoria">
                     ${item.descricaoCategoria}
                 </div>
                 <div class="botaoDeAcoesItemCategoria">
-                    <button ><i class="fi fi-rr-pencil"></i></button>
-                <button ><i class="fi fi-rs-trash"></i></button>
+                    <button onclick="editarCategoria(${posicao})"><i class="fi fi-rr-pencil"></i></button>
+                <button onclick="excluirCategoria(${posicao})" ><i class="fi fi-rs-trash"></i></button>
                 </div>
             </li>
             `
         }).join('\n')
 
-        let despesas = categorias.filter((item)=> item.tipoDeEntrada == 'Despesa').map( (item) => {
+        let despesas = categorias.filter((item)=> item.tipoDeEntrada == 'Despesa').map( (item, posicao) => {
             return `
             <li>
                 <div class="descricaoItemCategoria">
                     ${item.descricaoCategoria}
                 </div>
                 <div class="botaoDeAcoesItemCategoria">
-                    <button ><i class="fi fi-rr-pencil"></i></button>
-                <button ><i class="fi fi-rs-trash"></i></button>
+                    <button onclick="editarCategoria(${posicao})"><i class="fi fi-rr-pencil"></i></button>
+                <button onclick="excluirCategoria(${posicao})"><i class="fi fi-rs-trash"></i></button>
                 </div>
             </li>
             `
@@ -179,5 +200,32 @@ if(listagemReceitaCategorias && listagemDespesaCategorias){
 
         listagemReceitaCategorias.innerHTML = receitas;
         listagemDespesaCategorias.innerHTML = despesas;
+    }
+}
+
+if(document.getElementById("tituloNovaCategoria")){
+    const queryParamEditarCategoria= window.location.href.split("?")?.pop();
+
+    if(queryParamEditarCategoria.startsWith("posicao")){
+        const posicao = queryParamEditarCategoria.split("=").pop()
+        document.getElementById("tituloNovaCategoria").innerHTML= "Editando Categoria"
+
+        let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
+        let inputEntrada = document.getElementById("TipoEntrada");
+        let inputCategoria = document.getElementById("Categoria")
+        let botaoSalvarCategoria= document.getElementById("botaoSalvarCategoria")
+       
+        inputEntrada.value = categorias[posicao].tipoDeEntrada;
+        inputCategoria.value = categorias[posicao].descricaoCategoria;
+
+
+        botaoSalvarCategoria.addEventListener("click", (e) =>{
+            e.preventDefault();
+            categorias[posicao].tipoDeEntrada = inputEntrada.value;
+            categorias[posicao].descricaoCategoria = inputCategoria.value;
+
+            localStorage.setItem("categorias", JSON.stringify(categorias));
+            window.location.href = "Categorias.html"
+        })
     }
 }

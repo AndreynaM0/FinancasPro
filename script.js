@@ -1,4 +1,5 @@
 const botao = document.getElementById("salvarNovaTransacao");
+const botaoCancelarTransacao = document.getElementById("cancelarNovaTransacao");
 
 if (botao) {
     botao.addEventListener("click", function (evento) {
@@ -24,6 +25,14 @@ if (botao) {
         //Retornar a listagem de transações:
         window.location.href = "Transacoes.html";
 
+    })
+}
+
+if (botaoCancelarTransacao) {
+    botaoCancelarTransacao.addEventListener("click", function (evento){
+        evento.preventDefault();
+
+        window.location.href = "Transacoes.html";
     })
 }
 
@@ -124,6 +133,7 @@ if(valorReceita && valorDespesa && valorSaldo){
 
 
 const botaoSalvarCategoria = document.getElementById("botaoSalvarCategoria");
+const botaoCancelarCategoria = document.getElementById("botaoCancelarCategoria");
 
 if(botaoSalvarCategoria){
     const queryParamEditarCategoria= window.location.href.split("?")?.pop();
@@ -144,6 +154,14 @@ if(botaoSalvarCategoria){
         })   
 
     }
+}
+
+if (botaoCancelarCategoria) {
+    botaoCancelarCategoria.addEventListener("click", function (evento){
+        evento.preventDefault();
+
+        window.location.href = "Categorias.html";
+    })
 }
 
 const listagemReceitaCategorias = document.getElementById("listagemDeReceitasCategoria");
@@ -228,4 +246,14 @@ if(document.getElementById("tituloNovaCategoria")){
             window.location.href = "Categorias.html"
         })
     }
+}
+
+const botaoCancelarLimite = document.getElementById("botaoCancelarLimite");
+
+if (botaoCancelarLimite) {
+    botaoCancelarLimite.addEventListener("click", function (evento){
+        evento.preventDefault();
+
+        window.location.href = "Orcamentos.html";
+    })
 }

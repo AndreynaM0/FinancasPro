@@ -182,6 +182,12 @@ function excluirCategoria(posicao) {
 }
 
 function editarCategoria(posicao){
+    /**
+     * Ao clicar no botão de editar o arquivo html abaixo vai ser chamada e vai levar para a tela de nova
+     * categoria só que junto vai levar a posicao da categoria que vai editar por meio de um `Query Param` para a tela de edição.
+     * OBS: Query Param é um tipo de parametro passado em rotas de navegadores para indicar geralmente consulta ou edições de entidades e alguma pagina.
+     * Pesquisar mais e ver as aplicações.
+     */
     window.location.href = `NovaCategoria.html?posicao=${posicao}`
 }
 
@@ -221,13 +227,42 @@ if(listagemReceitaCategorias && listagemDespesaCategorias){
     }
 }
 
+/**
+ * Todo esse bloco que se inicia do if serve para alterar a tela de nova categoria e indicar que seu comportamento
+ * Será uma edição quando aquela query param é chamada. (Conceito utilizado em sistemas complexos para realizar edições de entidades.)
+ */
+/**
+ * Esse IF serve só pra saber se o arquivo html que está carregando esse Script é o arquivo de NovaCategoria.html (Esse Id abaixo está lá)
+ */
 if(document.getElementById("tituloNovaCategoria")){
+    /**
+     * Como no conceito de desenvolvimento de front só com html, css e js não existe metodos nativos
+     * para pegar query param (Todos os frameworks frontend tem métodos eficientes e simples pra fazer o que tive que fazer pra
+     * pegar a query param) foi feita uma regra para pegar a url que está aberta e localizar o query param que está nela.
+     * essa sequencia de split e pop que faço é para obter justamente o trecho o query param que está dentro da url. 
+     */
     const queryParamEditarCategoria= window.location.href.split("?")?.pop();
 
+    /**
+     * Verifico nesse IF abaixo se a query param que está lá existe e se ele é o da posição que eu informo (nesse momento a variavel
+     * queryParamEditarCategoria vai ter um valor mais ou menos assim: 'posicao=1')
+     */
     if(queryParamEditarCategoria.startsWith("posicao")){
+        /**
+         * pegue a query param e separei o a parte da chave da parte do valor elas são separadas pelo '='. (Sintaxe query param: 'chave=valor')
+         * após separar peguei apenas o valor e coloquei na constante posicao para ser usada para localizar o item que vai ser editado. 
+         */
         const posicao = queryParamEditarCategoria.split("=").pop()
+        /**
+         * Como já confirmei pelo IF anterior que o que está ocorrendo é uma edição, então vou personalizar a pagina e mudar o texto dela
+         * para um texto que sugira uma edição.
+         */
         document.getElementById("tituloNovaCategoria").innerHTML= "Editando Categoria"
 
+        /**
+         * tendo a informação de qual posicao tá o valor que vou editar é só carregar o array lá do local storage e acessar a posicao e colcoar de volta nos inputs
+         * para visualização e edição dos valores
+         */
         let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
         let inputEntrada = document.getElementById("TipoEntrada");
         let inputCategoria = document.getElementById("Categoria")
@@ -236,7 +271,9 @@ if(document.getElementById("tituloNovaCategoria")){
         inputEntrada.value = categorias[posicao].tipoDeEntrada;
         inputCategoria.value = categorias[posicao].descricaoCategoria;
 
-
+        /**
+         * Cria o event listener para substituir aquele de salvar que tinha antes passando uma logica no especifica para edição.
+         */
         botaoSalvarCategoria.addEventListener("click", (e) =>{
             e.preventDefault();
             categorias[posicao].tipoDeEntrada = inputEntrada.value;

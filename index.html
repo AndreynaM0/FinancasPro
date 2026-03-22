@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,17 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel="stylesheet" href="styles/Style.css">
 </head>
+
 <body>
     <header class="menu">
         <img src="../img/icon.png" alt="">
@@ -41,7 +47,7 @@
                     <i class="fi fi-sr-wallet"></i>
                 </div>
             </div>
-           <div class="InfoValores">
+            <div class="InfoValores">
                 <div>
                     <h3>Receitas</h3>
                     <h1 id="valorReceita">R$ 0,00</h1>
@@ -60,15 +66,17 @@
                 </div>
             </div>
         </div>
-        <div class="GraficoContainerD">
-           <div>
-                <div>
-                    <h3>Despesas por categoria</h3>
-                </div>
-           </div>
+        </br>
+        <div class="GraficoContainer">
+            <div>
+                <h3>Movimentações</h3>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
 
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./script.js"></script>
 </body>
 

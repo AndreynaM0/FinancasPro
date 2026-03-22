@@ -53,18 +53,8 @@ function excluirTransacao(posicao) {
 
 }
 
-function editarTransacao(posicao) {
-    let trasacoes = new Array();
-
-    if (localStorage.hasOwnProperty("transacoes")) {
-        transacoes = JSON.parse(localStorage.getItem("transacoes"));
-    }
-
-    if (transacoes.length){
-        window.location.href = "NovaTransacao.html";
-        transacoes.splice(posicao, 1)
-        localStorage.setItem("transacoes", JSON.stringify(transacoes));
-    }
+function editarTransacao(posicao){
+    window.location.href = `NovaTransacao.html?posicao=${posicao}`;
 }
 
 const listagemDeTransacoes = document.getElementById("listagemTransacao");
@@ -98,6 +88,48 @@ if (listagemDeTransacoes) {
 
 }
 
+if (document.getElementById("tituloNovaTransacao")){
+
+    const queryParamEditarTransacao = window.location.search.split("?").pop();
+
+    if(queryParamEditarTransacao.startsWith("posicao")){
+        const posicao = queryParamEditarTransacao.split("=").pop();
+
+        document.getElementById("tituloNovaTransacao").innerHTML = "Editando Transação";
+
+        let transacoes = localStorage.hasOwnProperty("transacoes") ? JSON.parse(localStorage.getItem("transacoes")) : [];
+
+        let tipoEntrada = document.getElementById("TipoEntrada");
+        let Descricao = document.getElementById("Descricao");
+        let pegarValor = document.getElementById("Valor");
+        let tipoCategoria = document.getElementById("TipoCategoria");
+        let dataTransacao = document.getElementById("Data");
+
+        let botaoSalvarTransacao = document.getElementById("salvarNovaTransacao")
+
+        tipoEntrada.value = transacoes[posicao].Entrada
+        Descricao.value = transacoes[posicao].Descricao
+        pegarValor.value = transacoes[posicao].Valor
+        tipoCategoria.value = transacoes[posicao].Categoria
+        dataTransacao.value = transacoes[posicao].Data
+
+        botaoSalvarTransacao.addEventListener("click", (evento) => {
+            evento.preventDefault();
+
+            transacoes[posicao].Entrada = tipoEntrada.value;
+            transacoes[posicao].Descricao = Descricao.value;
+            transacoes[posicao].Valor = pegarValor.value;
+            transacoes[posicao].Categoria = tipoCategoria.value;
+            transacoes[posicao].Data = dataTransacao.value;
+
+            localStorage.setItem("transacoes", JSON.stringify(transacoes));
+            window.location.href = "Transacoes.html";
+
+    })
+
+    }
+}
+
 const valorReceita = document.getElementById("valorReceita");
 const valorDespesa = document.getElementById("valorDespesa");
 const valorSaldo = document.getElementById("valorSaldo");
@@ -114,7 +146,7 @@ if(valorReceita && valorDespesa && valorSaldo){
     let somaD = 0;
     let somaT = 0;
     
-    let somaRD = transacoes.map((itemTransacao) => {
+    transacoes.map((itemTransacao) => {
         if (itemTransacao.Entrada == "Receita"){
             let converterValorReceita = parseFloat(itemTransacao.Valor);
             somaR += converterValorReceita;
@@ -274,7 +306,7 @@ if(document.getElementById("tituloNovaCategoria")){
         /**
          * Cria o event listener para substituir aquele de salvar que tinha antes passando uma logica no especifica para edição.
          */
-        botaoSalvarCategoria.addEventListener("click", (e) =>{
+        botaoSalvarCategoria.addEventListener("click", (e) => {
             e.preventDefault();
             categorias[posicao].tipoDeEntrada = inputEntrada.value;
             categorias[posicao].descricaoCategoria = inputCategoria.value;
@@ -292,5 +324,6 @@ if (botaoCancelarLimite) {
         evento.preventDefault();
 
         window.location.href = "Orcamentos.html";
+
     })
 }

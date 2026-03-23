@@ -382,3 +382,26 @@ function adicionarCategoria(){
     
 }
 adicionarCategoria();
+
+const botaoSalvarLimite = document.getElementById("botaoSalvarLimite")
+
+if (botaoSalvarLimite) {
+    botaoSalvarLimite.addEventListener("click", (evento) => {
+        evento.preventDefault();
+        
+        tipoEntradaLimite = document.getElementById("TipoCategoria").value;
+        pegarValorLimite = document.getElementById("ValorLimite").value;
+
+        let limites = new Array();
+
+        if (localStorage.hasOwnProperty("limites")){
+            limites = JSON.parse(localStorage.getItem("limites"));
+        }
+
+        limites.push = ({Entrada: tipoEntradaLimite, Valor: pegarValorLimite})
+
+        localStorage.setItem("limites", JSON.stringify(limites));
+
+        window.location.href = "Orcamentos.html";
+    })
+}

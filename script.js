@@ -389,8 +389,8 @@ if (botaoSalvarLimite) {
     botaoSalvarLimite.addEventListener("click", (evento) => {
         evento.preventDefault();
         
-        tipoEntradaLimite = document.getElementById("TipoCategoria").value;
-        pegarValorLimite = document.getElementById("ValorLimite").value;
+        let tipoEntradaLimite = document.getElementById("TipoCategoria").value;
+        let pegarValorLimite = document.getElementById("ValorLimite").value;
 
         let limites = new Array();
 
@@ -398,7 +398,7 @@ if (botaoSalvarLimite) {
             limites = JSON.parse(localStorage.getItem("limites"));
         }
 
-        limites.push = ({Entrada: tipoEntradaLimite, Valor: pegarValorLimite})
+        limites.push({Entrada: tipoEntradaLimite, Valor: pegarValorLimite})
 
         localStorage.setItem("limites", JSON.stringify(limites));
 

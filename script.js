@@ -18,7 +18,7 @@ if (botao) {
             if (localStorage.hasOwnProperty("transacoes")) {
                 transacoes = JSON.parse(localStorage.getItem("transacoes"));
             }
-
+            
             transacoes.push({ Entrada: tipoEntrada, Descricao: Descricao, Valor: pegarValor, Categoria: tipoCategoria, Data: dataTransacao });
 
             localStorage.setItem("transacoes", JSON.stringify(transacoes));
@@ -350,7 +350,7 @@ if (document.getElementById("tituloNovaCategoria")) {
     }
 }
 
-const botaoCancelarLimite = document.getElementById("botaoCancelarLimite");
+const botaoCancelarLimite = document.getElementById("BotaoCancelarLimite");
 
 if (botaoCancelarLimite) {
     botaoCancelarLimite.addEventListener("click", function (evento) {
@@ -383,13 +383,13 @@ function adicionarCategoria(){
 }
 adicionarCategoria();
 
-const botaoSalvarLimite = document.getElementById("botaoSalvarLimite")
+const botaoSalvarLimite = document.getElementById("BotaoSalvarLimite")
 
 if (botaoSalvarLimite) {
     botaoSalvarLimite.addEventListener("click", (evento) => {
         evento.preventDefault();
         
-        let tipoEntradaLimite = document.getElementById("TipoCategoria").value;
+        let tipoCategoriaLimite = document.getElementById("TipoCategoria").value;
         let pegarValorLimite = document.getElementById("ValorLimite").value;
 
         let limites = new Array();
@@ -398,7 +398,7 @@ if (botaoSalvarLimite) {
             limites = JSON.parse(localStorage.getItem("limites"));
         }
 
-        limites.push({Entrada: tipoEntradaLimite, Valor: pegarValorLimite})
+        limites.push({Categoria: tipoCategoriaLimite, Valor: pegarValorLimite})
 
         localStorage.setItem("limites", JSON.stringify(limites));
 

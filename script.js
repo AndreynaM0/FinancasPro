@@ -12,7 +12,7 @@ if (botao) {
         let tipoCategoria = document.getElementById("TipoCategoria").value;
         let dataTransacao = document.getElementById("Data").value;
 
-        if(pegarValor != null && pegarValor != 0 && Descricao.length != 0 && dataTransacao.length != 0){
+        if(pegarValor > 0 && Descricao.length != 0 && dataTransacao.length != 0){
             let transacoes = new Array();
 
             if (localStorage.hasOwnProperty("transacoes")) {
@@ -38,7 +38,6 @@ if (botaoCancelarTransacao) {
     })
 }
 
-//Listagem de Transações (deixei o comentário por estar no mesmo doc java script...)
 
 function excluirTransacao(posicao) {
     let transacoes = new Array();
@@ -208,14 +207,18 @@ if (botaoSalvarCategoria) {
             const tipoDeEntrada = document.getElementById("TipoEntrada").value;
             const descricaoCategoria = document.getElementById("Categoria").value;
 
-            let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
+            if (descricaoCategoria.length != 0){
+                let categorias = localStorage.hasOwnProperty("categorias") ? JSON.parse(localStorage.getItem("categorias")) : [];
 
-            categorias.push({
+                categorias.push({
                 tipoDeEntrada, descricaoCategoria
-            });
+                });
 
-            localStorage.setItem("categorias", JSON.stringify(categorias));
-            window.location.href = "Categorias.html";
+                localStorage.setItem("categorias", JSON.stringify(categorias));
+                window.location.href = "Categorias.html";
+            }else{
+                alert("Informações inválidas!");
+            }
         })
 
     }
